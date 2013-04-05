@@ -74,6 +74,8 @@ var Run = Class.extend({
 });
 
 Student.mixin(Run);
+assert(Student.prototype.run,"test mixin run");
+assert(! s.hasOwnProperty("run"),'! s.hasOwnProperty("run")' );
 
 assert.equal("run 123 meters", s.run(123) , "mixin Run.");
 
@@ -88,6 +90,11 @@ Student.mixin(Think,{
         return "eat";
     }
 });
+
+assert(Student.prototype.think,"test mixin think");
+assert(Student.prototype.eat,"test mixin eat");
+assert(! s.hasOwnProperty("think"),'! s.hasOwnProperty("run")' );
+assert(! s.hasOwnProperty("eat"),'! s.hasOwnProperty("run")' );
 
 assert.equal("think", s.think()," mixin Think");
 assert.equal("eat", s.eat()," mixin eat");

@@ -15,9 +15,9 @@ Create a new type based on Class:
         },
         "someProp":"Person prop"
     });
+    
     var p = new Person("lucy",23);
-    assert("Person prop",p.someProp,"access Person class property");
-    assert("name: lucy, age: 23",p.echo());
+    assert.equal("name: lucy, age: 23",p.echo(),"Person.echo");
     
 Note: "init" is the constructor where all the initialiation is done.
 
@@ -38,6 +38,7 @@ Create a sub type again:
             "someProp":"Student prop"
         }
     );
+    
     var s = new Student("bob", 21, "1230");
     assert.equal("name: bob, age: 21, sno: 1230", s.echo(),"call this.superClass.echo()");
     assert.equal("learn: Math", s.learn("Math"),"extended new methods learn()" );
