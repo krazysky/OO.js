@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>OO.js test</title>
+        <script type="text/javascript" src="OO.js"></script>
+        <script type="text/javascript">
+var assert = function(test,msg){
+    if(!test)
+    {
+        console.log(msg);
+        throw Error();
+    }
+}
+assert.equal = function(o1,o2,msg){
+    if(o1 !== o2 )
+    {
+        console.log(msg);
+        throw Error();
+    }
+};

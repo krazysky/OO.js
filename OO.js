@@ -23,8 +23,8 @@
 		 * Set the constructor's flag, we just want to create an prototype, do not execute the "init" process. 
 		 */
 		this.__isCreatingPrototype__ = true;
-		
 		var prototype= new this();
+		this.__isCreatingPrototype__ = false;
 		
 		//copy all the extendedClassProperties to the prototype
 		for(var propName in  extendedClassProperties)
@@ -37,7 +37,7 @@
 		 */
 		var subClass = function(){
 		    /**
-		     * make sure we're not generating prototype, than we call the "init" process
+		     * make sure we're not generating prototype, then we call the "init" process
 		     */
 			if( (!arguments.callee.__isCreatingPrototype__) && typeof this.init == "function")
 				this.init.apply(this, arguments);
@@ -73,16 +73,23 @@
 	 * 
 	 * Make sure the mixin doesnot override important properties, like "init" (Not allowed here.)
 	 */
-	var mixin = function(source){
-		
-		if(typeof source === "function")
+	var mixin = function(){
+	    var source , i;
+		for(i =0; i< arguments.length;i++)
 		{
-			source = source.prototype;
-		}
-		
-		for(var propName in source)
-		{
-			 propName !== "init" && (this.prototype[propName] = source[propName]);
+		    
+		    source = arguments[i]; 
+		    
+    		if(typeof source === "function")
+    		{
+    			source = source.prototype;
+    		}
+    		
+    		for(var propName in source)
+    		{
+    			 propName !== "init" && (this.prototype[propName] = source[propName]);
+    		}
+		    
 		}
 				
 	};

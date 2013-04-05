@@ -1,3 +1,22 @@
+<html>
+    <head>
+        <title>OO.js test</title>
+        <script type="text/javascript" src="OO.js"></script>
+        <script type="text/javascript">
+var assert = function(test,msg){
+    if(!test)
+    {
+        console.log(msg);
+        throw Error();
+    }
+}
+assert.equal = function(o1,o2,msg){
+    if(o1 !== o2 )
+    {
+        console.log(msg);
+        throw Error();
+    }
+};
 var Person = Class.extend({
     "init":function(name,age){
         this.name = name;
@@ -93,3 +112,7 @@ assert.equal("think", s.think()," mixin Think");
 assert.equal("eat", s.eat()," mixin eat");
 
 console.log("test done.");
+        </script>
+    </head>
+    
+</html>
